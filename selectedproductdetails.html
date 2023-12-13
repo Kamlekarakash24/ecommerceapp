@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPLANE</title>
+    <style>
+    .header{
+     display: flex;
+     width:100%;
+     margin-left: 20px;
+     margin-right: 20px;
+     background-color: white;
+     justify-content: space-around;
+     padding: 20px;
+     box-shadow: 0 .5px black;
+     position: sticky;
+     }
+ #logo{
+     color: #009688;
+ }
+ .header1{
+     text-decoration: none;
+     font-size: xx-large;
+ }
+ .header1-2{
+     display: flex;
+     text-decoration: none;
+ }
+ #logo2{
+     color: black;
+ }
+ .header2-1{
+     text-decoration: none;
+     color: black;
+     padding: 10px;
+ }
+ .header2{
+     display: flex;
+     word-spacing: 10px;
+ }
+ .header3{
+     display: flex;
+ }
+ .header3-1{
+     padding: 10px;
+     padding-right: 30px;
+ }
+ 
+ 
+     .footer{
+     margin-top: 30px;
+     display: flex;
+     padding:25px;
+     color: whitesmoke;
+     background-color: black;
+     justify-content: space-around;
+ }
+ .footer1 a{
+  text-decoration: none;
+  color: whitesmoke;
+  padding:5px;
+ }
+ .footer1 a:hover , .header2-1:hover{
+     color:#009688;
+ }
+ #preview{
+     display: flex;
+     justify-content: space-around;
+     margin-top: 80px;
+ }
+ .imgpart{
+    width:50%;
+ }
+ .detailpart{
+    width:50%;
+ }
+ #cart-count{
+     text-decoration: none;
+     color: black;
+     background-color: #009688;
+     border-radius: 100%;
+     display: inline;
+     position: relative;
+     padding: 5px;
+ }
+ .brand{
+    color: black;
+    font-size: x-large;
+ }
+ .desc{
+    color:gray;
+    font-size: medium;
+ }
+ .amount{
+    color:#009688;
+    font-size: x-large;
+ }
+ .rs{
+    display:inline;
+ }
+ .rupee{
+    display:inline;
+ }
+ button{
+    border:none;
+    margin-left: 5px;
+ }
+ .addcart{
+    padding:15px;
+    background-color: #009688;
+    color:white;
+    font-size: x-large;
+    margin-top: 10px;
+ }
+
+</style>
+<script src="https://kit.fontawesome.com/cf02792455.js" crossorigin="anonymous"></script>
+    
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="header1">
+            <a class="header1-2" href="#logo">
+            <p id="logo">SHOP</p>
+            <p id="logo2">LANE</p>
+        </a>
+        </div>
+        <div class="header2">
+            <a class="header2-1" href="#home"><h5>HOME</h5></a>
+            <a class="header2-1" href="#clothing"><h5>CLOTHING</h5></a>
+            <a class="header2-1" href="#accessories"><h5>ACCESSORIES</h5></a>
+        </div>
+        <div class="header3">
+          <a class="header3-1" href="#search"><i class="fa-sharp fa-solid fa-magnifying-glass"></i> </a>
+          <a class="header3-1" href="./orderslist.html"><i class="fa-solid fa-cart-shopping"></i><p id="cart-count">0</p></a>
+          <a class="header3-1" href="#profile"> <i class="fa-solid fa-circle-user"></i></a>
+        </div>
+    </header>
+    <main id="preview">
+        
+
+        
+
+
+    </main>
+
+
+
+
+<footer class="footer">
+        <div class="footer1">
+            <a href="#"><h3>ONLINE STORE</h3></a>
+            <a href="#"><p style="font-size: small;">MEN CLOTHING</p></a>
+            <a href="#"><p style="font-size: small;">WOMEN CLOTHING</p></a>
+            <a href="#"><p style="font-size: small;">MEN ACCESSORIES</p></a>
+            <a href="#"><p style="font-size: small;">WOMEN ACCESSORIES</p></a>
+        </div>
+        <div class="footer1">
+            <a href="#"><h3>HELPFUL LINKS</h3></a>
+            <a href="#"><p style="font-size: small;">HOME</p></a>
+            <a href="#"><p style="font-size: small;">ABOUT</p></a>
+            <a href="#"><p style="font-size: small;">CONTACT</p></a>
+        </div>
+        <div class="footer1">
+            <a href="#"><h3>PARTNERS</h3></a>
+            <a href="#"><p style="font-size: small;">ZARA</p></a>
+            <a href="#"><p style="font-size: small;">PANTALOONS</p></a>
+            <a href="#"><p style="font-size: small;">LEVIS</p></a>
+            <a href="#"><p style="font-size: small;">UCB</p></a>
+            <a href="#"><p style="font-size: small;">+MANY MORE</p></a>
+        </div>
+        <div class="footer1">
+            <a href="#"><h3>ADDRESS</h3></a>
+            <a href="#"><p style="font-size: small;">BUILDING 101</p></a>
+            <a href="#"><p style="font-size: small;">CENTRAL AVENUE</p></a>
+            <a href="#"><p style="font-size: small;">LA-902722</p></a>
+            <a href="#"><p style="font-size: small;">UNITED STATES</p></a>
+        </div>
+    
+     </footer>
+<script>
+    var pro_id=window.location.search.split('=')[1];
+var preview=document.getElementById('preview');
+function viewdetails(){
+    $.get('https://5d76bf96515d1a0014085cf9.mockapi.io/product/'+pro_id,function(data,status){
+        var detaildata=data;
+        var imgpart=document.createElement('div');
+        var detailpart=document.createElement('div');
+        imgpart.classList.add('imgpart');
+        detailpart.classList.add('detailpart');
+        var img1=document.createElement('img');
+        img1.src=detaildata.preview;
+        img1.setAttribute('height','650px');
+        imgpart.append(img1);
+
+        var name=document.createElement('h2');
+        name.textContent=detaildata.name;
+
+        var brand=document.createElement('p');
+        brand.textContent=detaildata.brand;
+        brand.classList.add('brand');
+
+        var desc=document.createElement('p');
+        desc.textContent=detaildata.description;
+        desc.classList.add('desc');
+
+        var price=document.createElement('h4');
+        price.textContent='PRICE :';
+
+        var amount=document.createElement('p');
+        amount.classList.add('amount');
+
+        var rs=document.createElement('p');
+        rs.textContent="RS ";
+
+        var rupees=document.createElement('p');
+        rupees.classList.add('rupee');
+        rupees.textContent=detaildata.price;
+        amount.append(rs);
+        amount.append(rupees);
+        price.append(amount);
+
+        var ppreview=document.createElement('h4');
+        ppreview.textContent='PRODUCT PREVIEW';
+
+        var preimgbutton1=document.createElement('button');
+        var preimg1=document.createElement('img');
+        preimg1.setAttribute('height','150px');
+        preimg1.src=detaildata.photos[0];
+        preimgbutton1.append(preimg1);
+
+        var preimgbutton2=document.createElement('button');
+        var preimg2=document.createElement('img');
+        preimg2.setAttribute('height','150px');
+        preimg2.src=detaildata.photos[1];
+        preimgbutton2.append(preimg2);
+
+        var preimgbutton3=document.createElement('button');
+        var preimg3=document.createElement('img');
+        preimg3.setAttribute('height','150px');
+        preimg3.src=detaildata.photos[2];
+        preimgbutton3.append(preimg3);
+
+        var preimgbutton4=document.createElement('button');
+        var preimg4=document.createElement('img');
+        preimg4.setAttribute('height','150px');
+        preimg4.src=detaildata.photos[3];
+        preimgbutton4.append(preimg4);
+
+        var preimgbutton5=document.createElement('button');
+        var preimg5=document.createElement('img');
+        preimg5.setAttribute('height','150px');
+        preimg5.src=detaildata.photos[4];
+        preimgbutton5.append(preimg5);
+
+        var add_to_cart=document.createElement('button');
+        add_to_cart.classList.add('addcart');
+        add_to_cart.textContent='Add To Cart';
+
+        preimgbutton1.addEventListener('click',function(){img1.src=detaildata.photos[0]});
+        preimgbutton2.addEventListener('click',function(){img1.src=detaildata.photos[1]});
+        preimgbutton3.addEventListener('click',function(){img1.src=detaildata.photos[2]});
+        preimgbutton4.addEventListener('click',function(){img1.src=detaildata.photos[3]});
+        preimgbutton5.addEventListener('click',function(){img1.src=detaildata.photos[4]});
+   
+      add_to_cart.addEventListener('click',function(){
+        orderlist(detaildata.preview,detaildata.name,detaildata.price);
+      });
+
+      
+
+
+      
+
+  
+
+
+
+
+
+
+
+
+        detailpart.append(name);
+        detailpart.append(brand);
+        detailpart.append(desc);
+        detailpart.append(price);
+        detailpart.append(ppreview);
+        detailpart.append(preimgbutton1);
+        detailpart.append(preimgbutton2);
+        detailpart.append(preimgbutton3);
+        detailpart.append(preimgbutton4);
+        detailpart.append(preimgbutton5);
+        detailpart.append(add_to_cart);
+
+
+
+    preview.append(imgpart);
+    preview.append(detailpart);
+    });
+}
+    viewdetails();
+
+
+
+</script> 
+<script src="index.js"></script> 
+</body>
+</html>
